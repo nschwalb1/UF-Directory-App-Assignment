@@ -27,6 +27,14 @@
                 <th>Building Name</th>
                 <th></th>
               </tr>
+              <tr ng-repeat="item in listings track by $index" ng-click="showDetails($index)">
+                <td>
+                  {{ item.code }}
+                </td>
+                <td>
+                  {{ item.name }}
+                </td>
+              </tr>
               <!-- 
 
                   Fill in the rest of the table:
@@ -45,12 +53,11 @@
         <div class="col-md-6">
           <div class="jumbotron">
             <h2>Detailed Information</h2>
-            <!-- 
-
-              Include a way to display detailed information about an individual listing:
-                   * consider how to use ng-click within the the table to implement this feature
-
-             -->
+              <div ng-if="selectedListing.code"><span class="bold">Code:</span> {{selectedListing.code}}  </div>
+              <div ng-if="selectedListing.name"><span class="bold">Name:</span> {{selectedListing.name}}  </div>
+              <div ng-if="selectedListing.coordinates || selectedListing.address" class="bold">Location</div>
+              <div ng-if="selectedListing.coordinates"><span class="ital">Coordinates:</span> {{selectedListing.coordinates.latitude}}, {{selectedListing.coordinates.longitude}}</div>
+              <div ng-if="selectedListing.address"><span class="ital">Address:</span> {{selectedListing.address}}  </div>
           </div>
         </div>
       </div>

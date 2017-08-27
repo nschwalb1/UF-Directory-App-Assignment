@@ -6,3 +6,12 @@
   max-height: 400px;
   overflow: auto;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.ital {
+  font-style: italic;
+  padding-left : 2em;
+}
