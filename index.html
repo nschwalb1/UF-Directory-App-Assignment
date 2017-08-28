@@ -27,12 +27,15 @@
                 <th>Building Name</th>
                 <th></th>
               </tr>
-              <tr ng-repeat="item in listings track by $index" ng-click="showDetails($index)">
-                <td>
+              <tr ng-repeat="item in listings track by $index" style="width: 100%">
+                <td ng-click="showDetails($index)">
                   {{ item.code }}
                 </td>
-                <td>
+                <td ng-click="showDetails($index)" style="width: 100%">
                   {{ item.name }}
+                </td>
+                <td>
+                  <button ng-click="deleteListing($index)" class="delete"></button>
                 </td>
               </tr>
               <!-- 
