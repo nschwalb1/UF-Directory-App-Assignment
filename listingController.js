@@ -11,7 +11,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
           return (!$scope.searchQuery || (item.name.toLowerCase().indexOf($scope.searchQuery.toLowerCase()) != -1) ||
           (item.code.toLowerCase().indexOf($scope.searchQuery.toLowerCase()) != -1) )
       };
-    $scope.addListing = function() {};
+    $scope.addListing = function(listing) {
+      //TODO: Fix indexing for newly added listings - they get deleted improperly due to orderBy
+      $scope.listings.push(listing);
+    };
     $scope.deleteListing = function(index) {
       $scope.listings.splice(index,1);
     };
