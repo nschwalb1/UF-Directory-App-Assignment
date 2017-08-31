@@ -7,6 +7,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       Implement these functions in the controller to make your application function 
       as described in the assignment spec. 
      */
+      $scope.searchListings = function(item) {
+          return (!$scope.searchQuery || (item.name.toLowerCase().indexOf($scope.searchQuery.toLowerCase()) != -1) ||
+          (item.code.toLowerCase().indexOf($scope.searchQuery.toLowerCase()) != -1) )
+      };
     $scope.addListing = function() {};
     $scope.deleteListing = function(index) {
       $scope.listings.splice(index,1);

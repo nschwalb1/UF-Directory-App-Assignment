@@ -18,7 +18,7 @@
 
               -->
             <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchQuery">
           </div>
           <div class="tableWrapper">
             <table class="table table-striped table-hover">
@@ -27,7 +27,7 @@
                 <th>Building Name</th>
                 <th></th>
               </tr>
-              <tr ng-repeat="item in listings track by $index" style="width: 100%">
+              <tr ng-repeat="item in listings | filter: searchListings" style="width: 100%">
                 <td ng-click="showDetails($index)">
                   {{ item.code }}
                 </td>
