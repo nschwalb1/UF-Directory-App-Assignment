@@ -48,9 +48,9 @@
             </table>
           </div>
           <h3>Add Listing</h3>
-          <form>
-            <label>Name: <input type="text" ng-model="listing.name" required/></label><br />
+          <form name="newListingForm">
             <label>Code: <input type="text" ng-model="listing.code" required/></label><br />
+            <label>Name: <input type="text" ng-model="listing.name" required/></label><br />
             <label>Latitude: <input type="text" ng-model="listing.coordinates.latitude"/></label>
             <label>Longitude: <input type="text" ng-model="listing.coordinates.longitude"/></label><br />
             <label>Address: <input type="text" ng-model="listing.address"/></label><br />
