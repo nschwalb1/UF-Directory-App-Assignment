@@ -12,8 +12,9 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
           (item.code.toLowerCase().indexOf($scope.searchQuery.toLowerCase()) != -1) )
       };
     $scope.addListing = function(listing) {
-      //TODO: Fix indexing for newly added listings - they get deleted improperly due to orderBy
       $scope.listings.push(listing);
+      $scope.listings.sort(compare);
+      $scope.listing = null;
     };
     $scope.deleteListing = function(index) {
       $scope.listings.splice(index,1);
@@ -22,5 +23,12 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.selectedListing = $scope.listings[index];
       $scope.name = $scope.selectedListing.name;
     };
+    function compare(a,b) {
+        if (a.code < b.code)
+            return -1;
+        if (a.code > b.code)
+            return 1;
+        return 0;
+    }
   }
 ]);
