@@ -9,13 +9,32 @@ var fs = require('fs'),
     Listing = require('./ListingSchema.js'), 
     config = require('./config');
 
-/* Connect to your database */
+//Global variables
+var listingData;
 
+/* Connect to your database */
+var mongoURI = config.db.uri;
+
+mongoose.connect(mongoURI, {useMongoClient: true});
 /* 
   Instantiate a mongoose model for each listing object in the JSON file, 
   and then save it to your Mongo database 
  */
+var rawJSON = fs.readFileSync('listings.json');
+listingData = JSON.parse(rawJSON);
+console.log("Listing data added w/ " + listingData.entries.length + " entries");
 
+for(var i in listingData.entries){
+    var newListing = new Listing(listingData.entries[i]);
+    newListing.save(function(err) {
+        if (err) {
+            console.log("Error: "+err);
+            throw err;
+        }
+    });
+}
+mongoose.disconnect();
+console.log("All listing data added");
 
 /* 
   Once you've written + run the script, check out your MongoLab database to ensure that 
