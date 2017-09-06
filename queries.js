@@ -1,3 +1,16 @@
+
+/* For testing
+var should = require('should'),
+    mongoose = require('mongoose'),
+    Listing = require('./ListingSchema'),
+    config = require('./config');
+
+var mongoURI = config.db.uri;
+
+mongoose.connect(mongoURI, {useMongoClient: true});
+*/
+
+
 /* Fill out these functions using Mongoose queries*/
 
 var findLibraryWest = function() {
@@ -12,17 +25,13 @@ var findLibraryWest = function() {
    */
 };
 var removeCable = function() {
-    Listing.find({code: 'CABL'}, function(err, listing) {
+    Listing.findOneAndRemove({code: 'CABL'}, function(err, listing) {
         if (err) throw err;
 
-        listing.remove(function(err) {
-            if(err) throw err;
-
-            console.log(listing + ' Successfully deleted');
-        })
+        console.log(listing + ' Successfully deleted');
     })
   /*
-    Find the document with the code 'CABL'. This cooresponds with courses that can only be viewed 
+    Find the document with the code 'CABL'. This corresponds with courses that can only be viewed
     on cable TV. Since we live in the 21st century and most courses are now web based, go ahead
     and remove this listing from your database and log the document to the console. 
    */
@@ -42,7 +51,10 @@ var retrieveAllListings = function() {
     Listing.find({}, function(err, listings) {
         if (err) throw err;
 
-        console.log(listings);
+
+        for (var i in listings){
+            console.log(listings[i]);
+        }
     })
   /* 
     Retrieve all listings in the database, and log them to the console. 
